@@ -1,6 +1,6 @@
 --- VRC-YTdl-AutoUpdater_old.ps1	2019-09-01 23:43:00.000000000 +0900
-+++ VRC-YTdl-AutoUpdater_new.ps1	2020-01-26 19:09:28.000000000 +0900
-@@ -29,14 +29,41 @@
++++ VRC-YTdl-AutoUpdater.ps1	2020-01-26 20:47:22.000000000 +0900
+@@ -29,14 +29,42 @@
      exit
  }
  
@@ -29,11 +29,12 @@
 +#チェックサムを算出
 +$fileHash = Get-FileHash -Path $dlPath -Algorithm MD5
 +$hashFromFile = $fileHash.Hash
++Write-Host "ファイルのチェックサム: "$hashFromFile
 +#チェックサムを比較
 +if($hashFromFile -ne $hashFromWeb){
 +    Remove-Item $newExeName
-+    Write-Host "ファイルのチェックサム"$hashFromFile
-+    Write-Host "リモートのチェックサムと一致しませんでした。"
++    Move-Item "bak_youtube-dl.exe" $exeName
++    Write-Host "リモートのチェックサムと一致しなかったため、中断しました。"
 +    #$null = Read-Host '終了するには、Enter キーを押してください...'
 +    exit
 +}
