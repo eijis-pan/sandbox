@@ -23,8 +23,8 @@ function Get-YTdlRemoteHash{
     if(
         ($ParsedJsonOfYoutubeDlReselaseUrl -isnot [array]) -or
         ($ParsedJsonOfYoutubeDlReselaseUrl.Length -le $TargetReleaseIndex) -or
-        ($ParsedJsonOfYoutubeDlReselaseUrl[0].assets -isnot [array]) -or
-        ($ParsedJsonOfYoutubeDlReselaseUrl[0].assets.Length -lt 1)
+        ($ParsedJsonOfYoutubeDlReselaseUrl[$TargetReleaseIndex].assets -isnot [array]) -or
+        ($ParsedJsonOfYoutubeDlReselaseUrl[$TargetReleaseIndex].assets.Length -lt 1)
     ) {
         Write-Output $null
         return
