@@ -9,15 +9,20 @@
 #   "MD5SUMS" MD5ハッシュ
 #   "SHA1SUMS" SHA-1ハッシュ
 #
+# 引数3 TargetReleaseIndex
+#   省略可（省略時 0）
+#   0 で最新版のリリースを示す
+#
 function Get-YTdlRemoteHash{
     param (
         [PSCustomObject]$ParsedJsonOfYoutubeDlReselaseUrl,
-        [string]$CheckSumAssetName
+        [string]$CheckSumAssetName,
+        [int]$TargetReleaseIndex = 0
     )    
 
     if(
         ($ParsedJsonOfYoutubeDlReselaseUrl -isnot [array]) -or
-        ($ParsedJsonOfYoutubeDlReselaseUrl.Length -lt 1) -or
+        ($ParsedJsonOfYoutubeDlReselaseUrl.Length -le $TargetReleaseIndex) -or
         ($ParsedJsonOfYoutubeDlReselaseUrl[0].assets -isnot [array]) -or
         ($ParsedJsonOfYoutubeDlReselaseUrl[0].assets.Length -lt 1)
     ) {
@@ -26,7 +31,7 @@ function Get-YTdlRemoteHash{
     }
 
     $hashUrl = $null
-    foreach($asset in $ParsedJsonOfYoutubeDlReselaseUrl[0].assets){
+    foreach($asset in $ParsedJsonOfYoutubeDlReselaseUrl[$TargetReleaseIndex].assets){
         if($asset.name -eq $CheckSumAssetName){
             $hashUrl = $asset.browser_download_url
             break
