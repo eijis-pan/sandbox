@@ -15,15 +15,13 @@
 
     ![cant_open](Synth1_images/001_cant_open.png)
 
-1. システム環境設定を開いて
+1. システム環境設定を開いて、「セキュリティとプライバシー」を開く
 
     ![system](Synth1_images/002_system.png)
-
-1. セキュリティとプライバシーを開く
-
+    ↓
     ![system_security](Synth1_images/003_system_security.png)
 
-1. エラーダイアログの「Findrで表示」ボタンをクリックします。
+1. エラーダイアログの「Finderで表示」ボタンをクリックします。
 
     ![synth1_blocked](Synth1_images/004_synth1_blocked.png)
 
